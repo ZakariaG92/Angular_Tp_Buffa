@@ -1,10 +1,15 @@
 let mongoose = require('mongoose');
 let Schema = mongoose.Schema;
 
+
+
 let AssignmentSchema = Schema({
     id: Number,
+    auteur : String,
+    matiere:{ nom: String, matImage: String , profImage : String },
     dateDeRendu: Date,
     nom: String,
+    note: Number,
     rendu: Boolean
 });
 
