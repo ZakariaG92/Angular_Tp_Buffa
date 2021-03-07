@@ -11,6 +11,8 @@ function getAssignments(req, res){
     });
 }
 
+
+
 // Récupérer un assignment par son id (GET)
 function getAssignment(req, res){
     let assignmentId = req.params.id;
@@ -21,13 +23,29 @@ function getAssignment(req, res){
     })
 }
 
+
+// Récupérer un assignment par son id (GET)
+function getAssignmentRenduTrue(req, res){
+    let assignmentRendu = req.params.rendu;
+
+    Assignment.find({rendu: assignmentRendu}, (err, assignments) =>{
+        if(err){res.send(err)}
+        res.json(assignments);
+    })
+}
 // Ajout d'un assignment (POST)
 function postAssignment(req, res){
     let assignment = new Assignment();
     assignment.id = req.body.id;
     assignment.nom = req.body.nom;
+    assignment.note = req.body.note;
+    assignment.remarques = req.body.remarques;
     assignment.dateDeRendu = req.body.dateDeRendu;
     assignment.rendu = req.body.rendu;
+    assignment.auteur= req.body.auteur;
+    assignment.matiere.nom = req.body.matiere.nom;
+    assignment.matiere.matImage = req.body.matiere.matImage;
+    assignment.matiere.profImage = req.body.matiere.profImage;
 
     console.log("POST assignment reçu :");
     console.log(assignment)
@@ -70,4 +88,4 @@ function deleteAssignment(req, res) {
 
 
 
-module.exports = { getAssignments, postAssignment, getAssignment, updateAssignment, deleteAssignment };
+module.exports = { getAssignments, postAssignment, getAssignment, updateAssignment, deleteAssignment, getAssignmentRenduTrue };
