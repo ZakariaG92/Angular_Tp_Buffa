@@ -17,3 +17,9 @@
 .ajouterBtn {
   align-self: flex-end;
 }
+
+mat-card {
+  border-width:2px;
+  border-style:double;
+  border-color:black;
+  }

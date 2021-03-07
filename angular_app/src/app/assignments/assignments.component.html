@@ -1,28 +1,69 @@
 <div class="container">
   <a routerLink="/add">
-    <button class="ajouterBtn" mat-flat-button color="accent">
+    <button (click)="goToAddPage()" class="ajouterBtn" mat-flat-button color="accent">
       Ajouter Devoir
     </button>
   </a>
 </div>
 
-<mat-list *ngFor="let assignment of assignments">
+
+<mat-tab-group>
+  <mat-tab label="Rendus">
+  
+<mat-card *ngFor="let assignment of assignmentsRendus">
+	<mat-card-header>
+    <mat-icon>more_vert</mat-icon>
+		<div mat-card-avatar class="example-header-image"></div>
+		<mat-card-title>Date de rendu : {{assignment.dateDeRendu |date}}</mat-card-title>
+	</mat-card-header>
   <nav>
     <a routerLink="/assignment/{{this.assignment.id}}">
       <h3 mat-subheader>Date de rendu : {{assignment.dateDeRendu |date}}</h3>
       <mat-list-item (click)="assignmentClique(assignment)">
-        <p appRendu *ngIf="assignment.rendu; else nonSoumis">
+        <p appRendu>
           Devoir intitulé {{assignment.nom}} a été rendu.
         </p>
         <ng-template #nonSoumis>
           <p>Le devoir {{assignment.nom}} n'a pas été rendu.</p>
-        </ng-template>
-        <mat-divider></mat-divider>
+        </ng-template> -->
+         <mat-divider></mat-divider>
       </mat-list-item>
     </a>
   </nav>
-</mat-list>
+  <p>la photo de la matiere : </p>
+  <img [src]="this.assignment.matiere?.matImage">
+  <br> 
+  <p>la photo du prof : </p>
+  <img [src]="this.assignment.matiere?.profImage">
+</mat-card>
+ </mat-tab>
+  <mat-tab label="Non Rendus">
+    <mat-card *ngFor="let assignment of assignmentsNonRendus">
+      <mat-card-header>
+        <mat-icon>more_vert</mat-icon>
+        <div mat-card-avatar class="example-header-image"></div>
+        <mat-card-title>Date de rendu : {{assignment.dateDeRendu |date}}</mat-card-title>
+      </mat-card-header>
+      <nav>
+        <a routerLink="/assignment/{{this.assignment.id}}">
+          <h3 mat-subheader>Date de rendu : {{assignment.dateDeRendu |date}}</h3>
+          <mat-list-item (click)="assignmentClique(assignment)">
+              <p>Le devoir {{assignment.nom}} n'a pas été rendu.</p>
+            <mat-divider></mat-divider>
+          </mat-list-item>
+        </a>
+      </nav>
 
-<!--
-<app-component-detail [assignementTransmis]="assignmentSelectionne"></app-component-detail>
--->
+      <p>la photo de la matiere : </p>
+      <img [src]="this.assignment.matiere?.matImage">
+      <br> 
+      <p>la photo du prof : </p>
+      <img [src]="this.assignment.matiere?.profImage">
+
+    </mat-card>
+  </mat-tab>
+</mat-tab-group>
+
+<!-- <app-component-detail [assignementTransmis]="assignmentSelectionne"></app-component-detail> -->
+
+

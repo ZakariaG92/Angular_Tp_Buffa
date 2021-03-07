@@ -9,26 +9,26 @@ import { catchError, map, tap } from 'rxjs/operators';
   providedIn: 'root',
 })
 export class AssignmentsService {
-  assignments: Assignment[] = [
-    {
-      id: 1,
-      nom: 'TP1 Web Components à rendre',
-      dateDeRendu: new Date('2020-11-17'),
-      rendu: true,
-    },
-    {
-      id: 2,
-      nom: 'TP2 Angular à rendre',
-      dateDeRendu: new Date('2020-12-13'),
-      rendu: false,
-    },
-    {
-      id: 3,
-      nom: 'Mini Projet Angular à rendre',
-      dateDeRendu: new Date('2021-01-07'),
-      rendu: false,
-    },
-  ];
+  // assignments: Assignment[] = [
+  //   {
+  //     id: 1,
+  //     nom: 'TP1 Web Components à rendre',
+  //     dateDeRendu: new Date('2020-11-17'),
+  //     rendu: true,
+  //   },
+  //   {
+  //     id: 2,
+  //     nom: 'TP2 Angular à rendre',
+  //     dateDeRendu: new Date('2020-12-13'),
+  //     rendu: false,
+  //   },
+  //   {
+  //     id: 3,
+  //     nom: 'Mini Projet Angular à rendre',
+  //     dateDeRendu: new Date('2021-01-07'),
+  //     rendu: false,
+  //   },
+  // ];
 
   constructor(
     private loggingService: LoggingService,
@@ -45,6 +45,7 @@ export class AssignmentsService {
       )
   }
 
+  
   // Version avec promesse
   getAssignmentsPromise(): Promise<Assignment[]> {
     //return of(this.assignments);
@@ -55,7 +56,7 @@ export class AssignmentsService {
     //let result = this.assignments.find(a => (a.id === id));
 
     //return of(result);
-    return this.http.get<Assignment>(this.uri + '/' + id)
+    return this.http.get<Assignment>(this.uri + '/id/' + id)
     .pipe(
       map(a => {
         a.nom += " MODIFIE DANS PIPE AVEC UN MAP";

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { AssignmentsService } from '../shared/assignments.service';
 import {Assignment} from './assignment.model';
 
@@ -11,10 +12,12 @@ export class AssignmentsComponent implements OnInit {
   titre = "Mon application sur les Assignments 2 !"
   formVisible = false;
   assignments:Assignment[];
+  assignmentsRendus:Assignment[];
+  assignmentsNonRendus:Assignment[];
   assignmentSelectionne:Assignment;
 
 
-  constructor(private assignmentsService:AssignmentsService) { }
+  constructor(private assignmentsService:AssignmentsService, private route: Router,) { }
 
   ngOnInit(): void {
 
@@ -23,6 +26,9 @@ export class AssignmentsComponent implements OnInit {
       .subscribe(assignments => {
         // exécuté que quand les données sont réellement disponible
         this.assignments = assignments;
+        console.log('this.assignments', this.assignments);
+        this.assignmentsRendus = this.assignments.filter( ass => ass.rendu);
+        this.assignmentsNonRendus = this.assignments.filter( ass => !ass.rendu); 
       });
      /*
      this.assignmentsService.getAssignmentsPromise()
@@ -32,9 +38,19 @@ export class AssignmentsComponent implements OnInit {
      */
   }
 
+
+
   assignmentClique(assignment) {
     this.assignmentSelectionne = assignment;
   }
+
+  public goToAddPage(){
+    console.log('go add');
+    this.route.navigate(["add"]);
+
+  }
+
+
 /*
   onNouvelAssignment(event:Assignment) {
     //this.assignments.push(event);

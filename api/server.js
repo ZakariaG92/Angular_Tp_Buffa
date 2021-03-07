@@ -94,12 +94,13 @@ const prefix = '/api';
 app.route(prefix + '/assignments')
   .get(assignment.getAssignments);
 
-app.route(prefix + '/assignments/:rendu')
+app.route(prefix + '/assignments/rendu/:rendu')
   .get(assignment.getAssignmentRenduTrue)
 
-app.route(prefix + '/assignments/:id')
+app.route(prefix + '/assignments/id/:id')
   .get(assignment.getAssignment)
   .delete(assignment.deleteAssignment);
+
 
 
 app.route(prefix + '/assignments')

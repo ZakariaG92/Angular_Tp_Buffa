@@ -1,19 +1,41 @@
 <div class="container">
-  <mat-card *ngIf="assignementTransmis">
-    <mat-card-title>{{assignementTransmis.nom}}</mat-card-title>
+  <mat-card >
+    <!-- <mat-card-title>{{assignementTransmis.nom}}</mat-card-title>
+    <mat-card-title>{{assignementTransmis.note}}</mat-card-title>
+    <mat-card-title>{{assignementTransmis.auteur}}</mat-card-title>
+    <mat-card-title>{{assignementTransmis.matiere.nom}}</mat-card-title>
+    <mat-card-title>{{assignementTransmis.remarques}}</mat-card-title> -->
+
+    <input type="text" id="matiere.nom" name="matiere.nom" required
+    minlength="4" maxlength="8" size="10" [(ngModel)]="assignementTransmis.matiere.nom">
+
+    <input type="text" id="note" name="note" required
+    minlength="4" maxlength="8" size="10" [(ngModel)]="assignementTransmis.note">
+    
+    <input type="text" id="auteur" name="auteur" required
+    minlength="4" maxlength="8" size="10" [(ngModel)]="assignementTransmis.auteur">
+
+    <input type="text" id="auteur" name="matiere.nom" required
+    minlength="4" maxlength="8" size="10" [(ngModel)]="assignementTransmis.matiere.nom">
+
+    <input type="text" id="auteur" name="remarques" required
+    minlength="4" maxlength="80" size="10" [(ngModel)]="assignementTransmis.remarques">
+
+
+
     <mat-card-subtitle>{{assignementTransmis.dateDeRendu | date}}</mat-card-subtitle>
     <mat-checkbox *ngIf="!assignementTransmis.rendu" (click)="onAssignementRendu()">
       Assignment rendu
     </mat-checkbox>
 
         <button mat-flat-button color="primary"
-                [disabled]="!loggedIn()"
+                [disabled]="loggedIn()"
                 (click)="onClickEdit()">
           EDIT
         </button>
 
     <button mat-flat-button color="warn" (click)="onDelete()">
-      DELETE
+      DELETE2
     </button>
   </mat-card>
 </div>

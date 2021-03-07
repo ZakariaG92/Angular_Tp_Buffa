@@ -1,5 +1,5 @@
-<form class="form" #formAssignment>
-  <mat-form-field>
+<!-- <form class="form" #formAssignment> -->
+  <!-- <mat-form-field>
     <input matInput
            placeholder="Nom du devoir"
            [(ngModel)]="nomDevoir"
@@ -16,12 +16,135 @@
     >
     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
     <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field> -->
+
+  <!-- <mat-form-field>
+    <input matInput
+           placeholder="Auteur"
+           [(ngModel)]="auteur"
+           name="auteur"
+    >
   </mat-form-field>
 
-  <button mat-stroked-button
+
+    <input matInput
+           placeholder="Note"
+           [(ngModel)]="note"
+           name="note"
+    >
+    <input matInput
+           placeholder="remarques"
+           [(ngModel)]="remarques"
+           name="remarques"
+    >
+  <input matInput
+  placeholder="matiere"
+  [(ngModel)]="matiere"
+  name="matiere"
+> -->
+
+  <!-- <button mat-stroked-button
           color="primary"
           (click)="onSubmit(); formAssignment.reset()"
   >
     Ajouter un devoir
-  </button>
+  </button> -->
+
+<!-- </form> -->
+
+<!-- <form [formGroup]="formGroup"> -->
+  <form [formGroup]="formGroup" class="form" #formAssignment>
+  <mat-vertical-stepper #linearVerticalStepper="matVerticalStepper" formArrayName="formArray" [linear]="false">
+    <mat-step formGroupName="0" [stepControl]="formArray?.get([0])">
+      <ng-template matStepLabel>Fill out your name</ng-template>
+
+      <mat-form-field>
+        <input matInput
+               placeholder="Nom du devoir"
+               [(ngModel)]="nomDevoir"
+               name="nom"
+               [ngModelOptions]="{standalone: true}"
+        >
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput
+               [matDatepicker]="picker"
+              placeholder="Date de rendu"
+              [(ngModel)]="dateRendu"
+              name="date"
+              [ngModelOptions]="{standalone: true}"
+        >
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+
+      <div>
+        <button mat-button matStepperNext>Next</button>
+      </div>
+    </mat-step>
+
+    <mat-step formGroupName="1" [stepControl]="formArray?.get([1])">
+      <ng-template matStepLabel>
+        <div>Fill out your email address</div>
+      </ng-template>
+
+      <!-- <mat-form-field>
+        <mat-label>Email address</mat-label>
+        <input matInput formControlName="emailFormCtrl">
+        <mat-error>The input is invalid.</mat-error>
+      </mat-form-field> -->
+
+      <mat-form-field>
+        <input matInput
+               placeholder="Auteur"
+               [(ngModel)]="auteur"
+               name="auteur"
+               [ngModelOptions]="{standalone: true}"
+        >
+      </mat-form-field>
+    
+    
+        <input matInput
+               placeholder="Note"
+               [(ngModel)]="note"
+               name="note"
+               [ngModelOptions]="{standalone: true}"
+        >
+        <input matInput
+               placeholder="remarques"
+               [(ngModel)]="remarques"
+               name="remarques"
+               [ngModelOptions]="{standalone: true}"
+        >
+      <input matInput
+      placeholder="matiere"
+      [(ngModel)]="matiere"
+      name="matiere"
+      [ngModelOptions]="{standalone: true}"
+    >
+
+
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button matStepperNext>Next</button>
+      </div>
+    </mat-step>
+
+    <mat-step>
+      <ng-template matStepLabel>Confirm your information</ng-template>
+      Everything seems correct.
+      <div>
+        <!-- <button mat-button>Done</button> -->
+        <button mat-stroked-button
+        color="primary"
+        (click)="onSubmit(); formAssignment.reset()"
+>
+  Ajouter un devoir
+</button>
+        <button type="button" mat-button (click)="linearVerticalStepper.reset()">Reset</button>
+      </div>
+    </mat-step>
+  </mat-vertical-stepper>
 </form>
+

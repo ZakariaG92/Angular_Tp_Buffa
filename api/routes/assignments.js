@@ -15,11 +15,23 @@ function getAssignments(req, res){
 
 // Récupérer un assignment par son id (GET)
 function getAssignment(req, res){
-    let assignmentId = req.params.id;
+    console.log("**************************");
+    console.log("Get assignement");
+    let assignmentId = parseInt(req.params.id);
+    console.log(assignmentId);
 
     Assignment.findOne({id: assignmentId}, (err, assignment) =>{
         if(err){res.send(err)}
         res.json(assignment);
+    })
+}
+
+function getAssignmentById(req, res){
+    let assignmentid = req.params.id;
+
+    Assignment.find({id: assignmentid}, (err, assignments) =>{
+        if(err){res.send(err)}
+        res.json(assignments);
     })
 }
 
@@ -88,4 +100,4 @@ function deleteAssignment(req, res) {
 
 
 
-module.exports = { getAssignments, postAssignment, getAssignment, updateAssignment, deleteAssignment, getAssignmentRenduTrue };
+module.exports = { getAssignments, postAssignment, getAssignment, updateAssignment, deleteAssignment, getAssignmentRenduTrue, getAssignmentById };

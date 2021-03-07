@@ -14,7 +14,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { AssignmentsComponent } from './assignments/assignments.component';
 import { RenduDirective } from './shared/rendu.directive';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { ComponentDetailComponent } from './assignments/component-detail/component-detail.component';
@@ -23,6 +23,9 @@ import {RouterModule, Routes} from '@angular/router';
 import { EditAssignmentComponent } from './assignments/edit-assigment/edit-assignment.component';
 import { AuthGuard } from './shared/auth.guard';
 import { HttpClientModule } from '@angular/common/http';
+import { MatTabsModule } from '@angular/material/tabs';
+import { FormlyModule } from '@ngx-formly/core';
+import { MatStepperModule } from '@angular/material/stepper';
 
 const routes:Routes = [
   {
@@ -58,6 +61,7 @@ const routes:Routes = [
     EditAssignmentComponent
   ],
   imports: [
+    MatTabsModule,
     BrowserModule,
     BrowserAnimationsModule,
     MatButtonModule, MatIconModule, MatDividerModule,
@@ -66,7 +70,15 @@ const routes:Routes = [
     MatListModule, MatCardModule, MatCheckboxModule,
     MatSlideToggleModule,
     FormsModule, HttpClientModule,
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes),
+    BrowserAnimationsModule,
+    ReactiveFormsModule,
+    MatStepperModule,
+    FormlyModule.forRoot({
+      validationMessages: [
+        { name: 'required', message: 'This field is required' },
+      ],
+    }),
   ],
   providers: [],
   bootstrap: [AppComponent]
