@@ -11,6 +11,8 @@ function getAssignments(req, res){
     });
 }
 
+
+
 // Récupérer un assignment par son id (GET)
 function getAssignment(req, res){
     let assignmentId = req.params.id;
@@ -21,6 +23,16 @@ function getAssignment(req, res){
     })
 }
 
+
+// Récupérer un assignment par son id (GET)
+function getAssignmentRenduTrue(req, res){
+    let assignmentRendu = req.params.rendu;
+
+    Assignment.find({rendu: assignmentRendu}, (err, assignments) =>{
+        if(err){res.send(err)}
+        res.json(assignments);
+    })
+}
 // Ajout d'un assignment (POST)
 function postAssignment(req, res){
     let assignment = new Assignment();
@@ -76,4 +88,4 @@ function deleteAssignment(req, res) {
 
 
 
-module.exports = { getAssignments, postAssignment, getAssignment, updateAssignment, deleteAssignment };
+module.exports = { getAssignments, postAssignment, getAssignment, updateAssignment, deleteAssignment, getAssignmentRenduTrue };
