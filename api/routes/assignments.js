@@ -27,6 +27,7 @@ function postAssignment(req, res){
     assignment.id = req.body.id;
     assignment.nom = req.body.nom;
     assignment.note = req.body.note;
+    assignment.remarques = req.body.remarques;
     assignment.dateDeRendu = req.body.dateDeRendu;
     assignment.rendu = req.body.rendu;
     assignment.auteur= req.body.auteur;
